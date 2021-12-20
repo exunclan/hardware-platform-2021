@@ -24,7 +24,7 @@ const Page: React.FC<IPlatformProps> = ({
 
   useEffect(() => {
     console.log("Effect running");
-    echo.channel("parts").listen("BuyPart", (e: { part: IPart }) => {
+    echo.channel("parts").listen("PriceChanged", (e: { part: IPart }) => {
       console.log("Part", e.part);
       setParts((parts) =>
         parts.map((part) => {

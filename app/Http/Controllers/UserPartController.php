@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\BuyPart;
+use App\Events\SellPart;
 use App\Models\Part;
 use App\Models\UserPart;
 use Carbon\Carbon;
@@ -27,12 +28,6 @@ class UserPartController extends Controller
     ]);
     $userPart->save();
 
-    // listener code 
-    $part->price = $part->price - 1;
-    $part->save();
-
-    // new partPrice
-
     broadcast(new BuyPart($part, Auth::user()));
 
     return redirect()->route('platform.index');
@@ -45,6 +40,8 @@ class UserPartController extends Controller
       return redirect()->route('platform.index');
     }
     $user_part->update(['sold_at' => Carbon::now(), "sell_price" => $part->price]);
+
+    broadcast(new SellPart($part, Auth::user()));
 
     return redirect()->route('platform.index');
   }

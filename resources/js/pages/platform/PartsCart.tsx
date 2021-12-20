@@ -21,7 +21,7 @@ const PartsCart: React.FC<IPageProps> = ({ cart, parts }: IPageProps) => {
         </div>
       </div>
       <div className="flex lg:flex-col  flex-row flex-wrap justify-evenly w-full mt-2 bg-white p-6">
-        {cart &&
+        {cart && Object.keys(cart).length > 0 ? (
           Object.values(cart).map((item, i) => {
             const part = partById(item[0].part_id);
             const quantity = item.length;
@@ -50,7 +50,12 @@ const PartsCart: React.FC<IPageProps> = ({ cart, parts }: IPageProps) => {
                 </div>
               </a>
             );
-          })}
+          })
+        ) : (
+          <div className="text-accent-light font-bold text-center text-base uppercase ">
+            Your Cart is currently empty!
+          </div>
+        )}
         {/* {cart?.length ? (
           cart?.map((item, i) => {
             return (

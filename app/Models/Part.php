@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Events\PriceChanged;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Part extends Model
 {
@@ -14,17 +16,22 @@ class Part extends Model
     'type',
   ];
 
+  public function handleBuy($event)
+  {
+    $event->part->price = round($event->part->price + (10 / 100 * $event->part->price), 1);
+    $event->part->save();
+    broadcast(new PriceChanged($event->part));
+    // PartPrice code 
+  }
 
-  // public function setBuyAttribute()
-  // {
-  //   return $this->name;
-  // }
-  // public function sell()
-  // {
-  //   return $this;
-  // }
+  public function handleSell($event)
+  {
+    $event->part->price = round($event->part->price - (5 / 100 * $event->part->price), 1);
+    $event->part->save();
+    broadcast(new PriceChanged($event->part));
+    // PartPrice code 
 
-
+  }
 
   use HasFactory;
 }
