@@ -16,18 +16,18 @@ class CreateUsersTable extends Migration
     Schema::create('users', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->string('email')->unique()->nullable();
+      $table->string('email')->unique();
       $table->timestamp('email_verified_at')->nullable();
-      $table->string('password')->nullable();
+      $table->string('password');
       $table->boolean('admin')->default(false);
       $table->rememberToken();
       $table->timestamps();
 
       // Social authentication 
-      $table->string('provider')->default('local');
-      $table->string('social_id')->nullable();
-      $table->string('social_username')->nullable();
-      $table->string('social_avatar')->nullable();
+      // $table->string('provider')->default('local');
+      // $table->string('social_id')->nullable();
+      // $table->string('social_username')->nullable();
+      // $table->string('social_avatar')->nullable();
     });
   }
 

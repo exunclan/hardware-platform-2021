@@ -93,7 +93,7 @@ const Register: React.FC = () => {
             </div>
           </form>
 
-          <div className="input-group my-4 text-md text-center font-bold text-gray-500">
+          {/* <div className="input-group my-4 text-md text-center font-bold text-gray-500">
             OR
           </div>
 
@@ -103,7 +103,7 @@ const Register: React.FC = () => {
 
           <div className="input-group my-4">
             <SignInWithGoogle />
-          </div>
+          </div> */}
         </div>
       </div>
     </Layout>

@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AssignmentsController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PartsController;
 use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\UserPartController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,6 +74,31 @@ Route::prefix('/admin')
       return Inertia::render('admin/index');
     })->name('index');
   });
+
+// ----- Platform -----
+Route::prefix('/platform')
+  ->middleware(['auth'])
+  ->name('platform.')
+  ->group(function () {
+    Route::get('/', [PartsController::class, 'index'])->name('index');
+
+    // UserPart Operations
+    Route::prefix('/')->name("userpart.")->group(function () {
+      Route::post('/buy/{id}', [UserPartController::class, 'buy'])->name('buy');
+      Route::post('/sell/{id}', [UserPartController::class, 'sell'])->name('sell');
+    });
+  });
+
+// ----- Assignments -----
+Route::prefix('/assignments')
+  ->middleware(['auth'])
+  ->name('assignments.')
+  ->group(function () {
+    Route::get('/', [AssignmentsController::class, 'index'])->name('index');
+  });
+
+
+
 
 if (App::environment('local')) {
   Route::get('/authn', function () {

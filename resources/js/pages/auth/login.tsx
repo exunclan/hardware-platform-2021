@@ -88,7 +88,7 @@ const Login: React.FC<IProps> = ({ error }: IProps) => {
             </div>
           </form>
 
-          <div className="input-group my-4 text-md text-center font-bold text-gray-500">
+          {/* <div className="input-group my-4 text-md text-center font-bold text-gray-500">
             OR
           </div>
 
@@ -98,7 +98,7 @@ const Login: React.FC<IProps> = ({ error }: IProps) => {
 
           <div className="input-group my-4">
             <SignInWithGoogle />
-          </div>
+          </div> */}
         </div>
       </div>
     </Layout>

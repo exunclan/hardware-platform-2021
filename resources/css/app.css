@@ -24,29 +24,33 @@ html,
   margin: 0;
   padding: 0;
   color: #333;
+  scroll-behavior: smooth;
   @apply bg-gray-bg;
 }
 
 .button {
-  @apply cursor-pointer bg-gray-bg block rounded-lg p-4 text-center
-         uppercase leading-none font-bold border-2 border-gray-bg
-         text-sm text-gray-700 transition
-         hover:border-accent focus:border-accent 
+  @apply cursor-pointer bg-accent block rounded-lg p-4 text-center
+         uppercase leading-none font-bold text-sm text-white transition
          focus:outline-none focus:shadow-none;
+}
+.button-disabled {
+  @apply cursor-not-allowed  bg-type-light;
 }
 
 .input-group:focus-within label {
-  @apply text-gray-700;
+  @apply text-accent-light;
 }
 
 .input-group label {
-  @apply text-xs font-bold uppercase text-gray-500 mb-3 transition;
+  @apply text-xs font-bold uppercase text-type-light mb-3 transition;
 }
 
-.input-group input {
+.input-group input,
+.input-group textarea {
   @apply border-2 border-gray-bg focus:border-accent focus:outline-none rounded-lg p-3 w-full;
 }
 
+textarea:focus,
 input:focus,
 select:focus {
   box-shadow: none !important;
@@ -54,4 +58,15 @@ select:focus {
 
 .input-group .error {
   @apply text-red-700 text-sm mt-2;
+}
+
+.input-group .success {
+  @apply text-green-900 text-sm mt-2;
+}
+
+.dropdown {
+  @apply rounded-md border-2 border-gray-bg focus-visible:outline-none focus-visible:border-accent bg-gray-bg p-3;
+}
+.part-card {
+  @apply m-3 px-8 pt-10 pb-8 flex-grow w-80 bg-white rounded-lg shadow-md;
 }

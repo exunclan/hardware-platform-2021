@@ -41,7 +41,13 @@ const Index: React.FC = () => {
                   Admin
                 </Link>
               </Admin>
-              <Link className="button w-full" href="/auth/logout">
+              <Link className="button w-full my-2" href="/platform">
+                Start
+              </Link>
+              <Link className="button w-full my-2" href="/assignments">
+                Assignments
+              </Link>
+              <Link className="button w-full my-2" href="/auth/logout">
                 Logout
               </Link>
             </div>

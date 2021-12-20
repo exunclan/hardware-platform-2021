@@ -13,7 +13,7 @@ function useTitle(
   title: string,
   options: UseTitleOptions = DEFAULT_USE_TITLE_OPTIONS
 ) {
-  title = `${title} | LIRET`;
+  title = `${title} | Exun 2021`;
 
   const prevTitleRef = useRef(document.title);
   document.title = title;

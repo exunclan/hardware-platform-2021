@@ -7,7 +7,7 @@
   <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
   <script src="{{ mix('/js/app.js') }}" defer></script>
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <title>LIRET</title>
+  <title>Exun 2021</title>
 </head>
 
 <body>

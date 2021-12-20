@@ -20,7 +20,7 @@ const Layout: React.FC<ILayoutProps> = ({ children, links }: ILayoutProps) => {
       <nav className="flex p-5 sm:px-12 justify-between items-center flex-col sm:flex-row">
         <div className="flex sm:w-1/3 w-full justify-center sm:justify-start">
           <div className="font-extrabold text-lg uppercase text-gray-400 tracking-wide">
-            LIRET
+            Exun Hardware 2021
           </div>
         </div>
 

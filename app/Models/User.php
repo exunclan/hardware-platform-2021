@@ -23,11 +23,31 @@ class User extends Authenticatable
     'name',
     'email',
     'password',
-    'provider',
-    'social_id',
-    'social_username',
-    'social_avatar'
+    // 'provider',
+    // 'social_id',
+    // 'social_username',
+    // 'social_avatar'
+
+    // add it to hidden during production
+    // 'admin',
   ];
+
+
+  public function cart_parts_all()
+  {
+    return $this->hasMany(UserPart::class, 'user_id')->orderBy('created_at', 'desc');
+  }
+  public function cart_parts()
+  {
+    return $this->cart_parts_all()->where('sold_at', '=', null);
+  }
+
+
+
+  // public function parts()
+  // {
+  //   return $this->hasManyThrough(Part::class, UserPart::class, 'part_id', 'id');
+  // }
 
   /**
    * The attributes that should be hidden for arrays.
