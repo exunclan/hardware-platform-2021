@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Part;
+use App\Models\PartPrice;
 use App\Models\User;
 use App\Models\UserPart;
 use Illuminate\Http\Request;
@@ -25,13 +26,14 @@ class PartsController extends Controller
 
 
     $grouped_parts = $user->cart_parts->groupBy('part_id');
-
+    $part_price = PartPrice::orderBy('created_at', 'DESC')->get();
     // ddd($grouped_parts->all());
 
     return Inertia::render('platform/index', [
       "parts" => Part::all(),
       "user" => $user,
       "grouped_parts" => $grouped_parts->all(),
+      "part_price" => $part_price,
     ]);
   }
 

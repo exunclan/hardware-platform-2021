@@ -2,8 +2,7 @@ import { ErrorBag, Errors, Page, PageProps } from "@inertiajs/inertia";
 
 export interface IUser {
   id: number;
-  created_at: string;
-  updated_at: string;
+
   email: string;
   name: string;
   email_verified_at?: string;
@@ -14,6 +13,8 @@ export interface IUser {
   // social_id?: string;
   // social_username?: string;
   // social_avatar?: string;
+  created_at: string;
+  updated_at: string;
 }
 export interface IUserPart {
   id: number;
@@ -26,6 +27,9 @@ export interface IUserPart {
   sold_at?: string;
 
   part?: IPart;
+
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IAssignment {
@@ -34,6 +38,9 @@ export interface IAssignment {
   title: string;
   description: string;
   budget: string;
+
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IPart {
@@ -43,6 +50,19 @@ export interface IPart {
   company: string;
   price: string;
   type: string;
+
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IPartPrice {
+  id: number;
+
+  part_id: number;
+  price: string;
+
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IPageProps extends Page<PageProps> {

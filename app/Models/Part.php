@@ -22,6 +22,8 @@ class Part extends Model
     $event->part->save();
     broadcast(new PriceChanged($event->part));
     // PartPrice code 
+    $partPrice = new PartPrice(["part_id" => $event->part->id, "price" => $event->part->price]);
+    $partPrice->save();
   }
 
   public function handleSell($event)
@@ -30,7 +32,8 @@ class Part extends Model
     $event->part->save();
     broadcast(new PriceChanged($event->part));
     // PartPrice code 
-
+    $partPrice = new PartPrice(["part_id" => $event->part->id, "price" => $event->part->price]);
+    $partPrice->save();
   }
 
   use HasFactory;

@@ -1,19 +1,39 @@
 import { useForm, Link } from "@inertiajs/inertia-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IPart, IUserPart } from "../../lib/types";
 
 interface IPageProps {
   parts: IPart[];
   cart?: { [key: number]: IUserPart[] } | undefined;
+  checkedPartId: number;
+  setCheckedPartId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const PartsList: React.FC<IPageProps> = ({ parts, cart }: IPageProps) => {
+const PartsList: React.FC<IPageProps> = ({
+  parts,
+  cart,
+  setCheckedPartId,
+  checkedPartId,
+}: IPageProps) => {
   const buy = useForm({});
   const sell = useForm({});
+
+  // const [checkedPartId, setCheckedPartId] = useState(0);
+
+  const handleCheckbox: React.ChangeEventHandler<HTMLInputElement> = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (checkedPartId == (e.target.value as never)) {
+      setCheckedPartId(0);
+    } else {
+      setCheckedPartId(e.target.value as never);
+    }
+  };
+
   return (
-    <div className="w-full px-5 max-w-4xl mx-auto">
+    <div className="w-full px-5 max-w-4xl mx-auto order-1 ">
       <div className="w-full p-6 bg-white rounded-lg shadow-sm flex items-center">
-        <Link href="/admin" className="flex justify-center items-center mr-3">
+        <Link href="/" className="flex justify-center items-center mr-3">
           <div className="flex justify-center items-center bg-gray-bg p-3 rounded-lg mr-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -49,22 +69,35 @@ const PartsList: React.FC<IPageProps> = ({ parts, cart }: IPageProps) => {
 
           let cardClass;
           if (cart && cart_part_id?.includes(String(part.id))) {
-            cardClass = "part-card border-2 border-accent";
+            cardClass = "part-card border-2  border-accent";
             quantity = cart[part.id]?.length;
           } else {
             cardClass = "part-card";
           }
+
           return (
             <div
               key={i}
-              className={`${cardClass} relative`}
+              className={`${cardClass} relative box-border`}
               id={String(part.id)}
             >
               {quantity > 0 && (
-                <div className="text-sm bg-accent absolute inline-flex top-0 right-0 p-2 h-9 w-1/3 text-center justify-center rounded-tr-md font-bold text-white">
-                  {`IN CART: ${quantity}`}
+                <div className="text-sm bg-accent  absolute inline-flex top-0 right-0 p-2 h-9 w-1/3 text-center justify-center rounded-tr-md font-bold text-white">
+                  {`IN CART: ${quantity} `}
                 </div>
               )}
+              <div
+                className="text-sm  absolute inline-flex  h-5 w-5 text-center justify-center rounded-tr-md font-bold text-white"
+                style={{ top: "0.7rem", left: "0.5rem" }}
+              >
+                <input
+                  type="checkbox"
+                  value={part.id}
+                  onChange={handleCheckbox}
+                  checked={part.id == checkedPartId}
+                  className="w-full h-full outline-none checkbox rounded-tl-md"
+                />
+              </div>
               <div className="pb-6">
                 <div className="text-2xl leading-relaxed font-bold text-accent-dark">
                   {part.name}
