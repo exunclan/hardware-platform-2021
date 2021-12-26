@@ -29,7 +29,7 @@ const PartsList: React.FC<IPageProps> = ({
       setCheckedPartId(e.target.value as never);
     }
   };
-
+  const [query, setQuery] = React.useState<string>("");
   return (
     <div className="w-full px-5 max-w-4xl mx-auto order-1 ">
       <div className="w-full p-6 bg-white rounded-lg shadow-sm flex items-center">
@@ -59,107 +59,125 @@ const PartsList: React.FC<IPageProps> = ({
         </div>
       </div>
 
+      <div className="input-group my-5">
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => {
+            setQuery(e.target.value as string);
+          }}
+        />
+      </div>
+
       <div className="flex md:flex-row sm:flex-col flex-wrap justify-evenly items-center  w-full mt-5">
-        {parts.map((part, i) => {
-          let cart_part_id,
-            quantity = 0;
-          if (cart !== undefined) {
-            cart_part_id = Object.keys(cart);
-          }
+        {parts
+          .filter(({ name, company, type }: IPart) => {
+            return (
+              name.toLowerCase().includes(query.toLowerCase()) ||
+              company.toLowerCase().includes(query.toLowerCase()) ||
+              type.toLowerCase().includes(query.toLowerCase())
+            );
+          })
+          .map((part, i) => {
+            let cart_part_id,
+              quantity = 0;
+            if (cart !== undefined) {
+              cart_part_id = Object.keys(cart);
+            }
 
-          let cardClass;
-          if (cart && cart_part_id?.includes(String(part.id))) {
-            cardClass = "part-card border-2  border-accent";
-            quantity = cart[part.id]?.length;
-          } else {
-            cardClass = "part-card";
-          }
+            let cardClass;
+            if (cart && cart_part_id?.includes(String(part.id))) {
+              cardClass = "part-card border-2  border-accent";
+              quantity = cart[part.id]?.length;
+            } else {
+              cardClass = "part-card";
+            }
 
-          return (
-            <div
-              key={i}
-              className={`${cardClass} relative box-border`}
-              id={String(part.id)}
-            >
-              {quantity > 0 && (
-                <div className="text-sm bg-accent  absolute inline-flex top-0 right-0 p-2 h-9 w-1/3 text-center justify-center rounded-tr-md font-bold text-white">
-                  {`IN CART: ${quantity} `}
-                </div>
-              )}
+            return (
               <div
-                className="text-sm  absolute inline-flex  h-5 w-5 text-center justify-center rounded-tr-md font-bold text-white"
-                style={{ top: "0.7rem", left: "0.5rem" }}
+                key={i}
+                className={`${cardClass} relative box-border`}
+                id={String(part.id)}
               >
-                <input
-                  type="checkbox"
-                  value={part.id}
-                  onChange={handleCheckbox}
-                  checked={part.id == checkedPartId}
-                  className="w-full h-full outline-none checkbox rounded-tl-md"
-                />
-              </div>
-              <div className="pb-6">
-                <div className="text-2xl leading-relaxed font-bold text-accent-dark">
-                  {part.name}
+                {quantity > 0 && (
+                  <div className="text-sm bg-accent  absolute inline-flex top-0 right-0 p-2 h-9 w-1/3 text-center justify-center rounded-tr-md font-bold text-white">
+                    {`IN CART: ${quantity} `}
+                  </div>
+                )}
+                <div
+                  className="text-sm  absolute inline-flex  h-5 w-5 text-center justify-center rounded-tr-md font-bold text-white"
+                  style={{ top: "0.7rem", left: "0.5rem" }}
+                >
+                  <input
+                    type="checkbox"
+                    value={part.id}
+                    onChange={handleCheckbox}
+                    checked={part.id == checkedPartId}
+                    className="w-full h-full outline-none checkbox rounded-tl-md"
+                  />
                 </div>
-                <div className="text-sm font-extrabold text-type-light">
-                  {part.company}
+                <div className="pb-6">
+                  <div className="text-2xl leading-relaxed font-bold text-accent-dark">
+                    {part.name}
+                  </div>
+                  <div className="text-sm font-extrabold text-type-light">
+                    {part.company}
+                  </div>
                 </div>
-              </div>
-              <div className="uppercase text-sm font-semibold text-accent-dark">
-                {part.type}
-              </div>
-              <div className="mt-4">
-                <div className="text-xl font-extrabold  text-accent-dark">{`$${part.price}`}</div>
-                <div className="mt-3">
-                  <div className="flex-1 flex items-center justify-start">
-                    <form
-                      className=" w-1/2 ml-2"
-                      onSubmit={(e: React.SyntheticEvent) => {
-                        e.preventDefault();
-                        buy.post(`/platform/buy/${part.id}`, {
-                          preserveScroll: true,
-                          preserveState: true,
-                        });
-                      }}
-                    >
-                      <button
-                        type="submit"
-                        className="button hover:shadow-lg hover:scale-105 w-full"
+                <div className="uppercase text-sm font-semibold text-accent-dark">
+                  {part.type}
+                </div>
+                <div className="mt-4">
+                  <div className="text-xl font-extrabold  text-accent-dark">{`$${part.price}`}</div>
+                  <div className="mt-3">
+                    <div className="flex-1 flex items-center justify-start">
+                      <form
+                        className=" w-1/2 ml-2"
+                        onSubmit={(e: React.SyntheticEvent) => {
+                          e.preventDefault();
+                          buy.post(`/platform/buy/${part.id}`, {
+                            preserveScroll: true,
+                            preserveState: true,
+                          });
+                        }}
                       >
-                        Buy
-                      </button>
-                    </form>
-                    <form
-                      className=" w-1/2 ml-2"
-                      onSubmit={(e: React.SyntheticEvent) => {
-                        e.preventDefault();
-                        sell.post(`/platform/sell/${part.id}`, {
-                          preserveScroll: true,
-                          preserveState: true,
-                        });
-                      }}
-                    >
-                      {quantity > 0 ? (
-                        <button className="button w-full ml-2  hover:shadow-lg hover:scale-105">
-                          Sell
-                        </button>
-                      ) : (
                         <button
-                          className="button w-full ml-2  button-disabled"
-                          title="You don't own this item"
-                          disabled
+                          type="submit"
+                          className="button hover:shadow-lg hover:scale-105 w-full"
                         >
-                          Sell
+                          Buy
                         </button>
-                      )}
-                    </form>
+                      </form>
+                      <form
+                        className=" w-1/2 ml-2"
+                        onSubmit={(e: React.SyntheticEvent) => {
+                          e.preventDefault();
+                          sell.post(`/platform/sell/${part.id}`, {
+                            preserveScroll: true,
+                            preserveState: true,
+                          });
+                        }}
+                      >
+                        {quantity > 0 ? (
+                          <button className="button w-full ml-2  hover:shadow-lg hover:scale-105">
+                            Sell
+                          </button>
+                        ) : (
+                          <button
+                            className="button w-full ml-2  button-disabled"
+                            title="You don't own this item"
+                            disabled
+                          >
+                            Sell
+                          </button>
+                        )}
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
