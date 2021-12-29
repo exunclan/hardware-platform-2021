@@ -17,13 +17,9 @@ class UserPart extends Model
     'sold_at',
   ];
 
-  public function part_all()
-  {
-    return $this->belongsTo(Part::class, 'part_id');
-  }
   public function part()
   {
-    return $this->part_all();
+    return $this->belongsTo(Part::class, 'part_id');
   }
   // public function part_count()
   // {

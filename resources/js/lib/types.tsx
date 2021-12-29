@@ -9,6 +9,7 @@ export interface IUser {
   admin: boolean;
 
   cart_parts?: IUserPart[];
+  cart_parts_count?: number;
   // provider: string;
   // social_id?: string;
   // social_username?: string;

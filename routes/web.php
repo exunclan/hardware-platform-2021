@@ -7,6 +7,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PartsController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\UserPartController;
+use App\Http\Controllers\UsersController;
+use App\Models\Assignment;
+use App\Models\Part;
+use App\Models\PartPrice;
+use App\Models\User;
+use App\Models\UserPart;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,8 +77,20 @@ Route::prefix('/admin')
   ->name('admin.')
   ->group(function () {
     Route::get('/', function () {
-      return Inertia::render('admin/index');
+      $stats = [
+        "users" => User::all()->count(),
+        "parts" => Part::all()->count(),
+        "transactions" => UserPart::all()->count() + UserPart::whereNotNull('sold_at')->count(),
+        "assignments" => Assignment::all()->count(),
+        "price changes" => PartPrice::all()->count(),
+        "number of parts sold" => UserPart::where('sold_at', null)->count()
+      ];
+      return Inertia::render('admin/index', ['stats' => $stats]);
     })->name('index');
+    Route::get("/users", [UsersController::class, 'index'])->name('users');
+    Route::get("/users/{user}", [UsersController::class, 'show'])->name('user');
+    Route::post('/users/{user}/change_password', [UsersController::class, 'changePassword'])->name('changePassword');
+    Route::post("/users/{user}/login", [UsersController::class, 'login'])->name('login');
   });
 
 // ----- Platform -----

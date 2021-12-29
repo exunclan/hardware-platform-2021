@@ -20,8 +20,8 @@ class UsersSeeder extends Seeder
     User::factory()->times(10)->create();
     User::factory()->times(10)->unverified()->create();
     (new User([
-      'name' => 'Admin Admin',
-      'email' => 'admin@example.com',
+      'name' => 'Mukesh Kumar',
+      'email' => 'admin@dpsrkp.net',
       'password' => Hash::make('adminadmin'),
       'admin' => true,
       'email_verified_at' => now(),

@@ -35,7 +35,7 @@ class AuthController extends Controller
       return Redirect::to('/');
     }
 
-    return Inertia::render('auth/login', ['error' => 'Could not login, an error occurred']);
+    return Inertia::render('auth/login', ['error' => 'Email/Password Incorrect']);
   }
 
   public function register(Request $request)
