@@ -29,7 +29,7 @@ const PartsCart: React.FC<IPageProps> = ({ cart, parts }: IPageProps) => {
               <a
                 key={i}
                 href={`/platform#${item[0].part_id}`}
-                className="my-3 lg:mx-auto mx-3 lg:w-full px-3 py-4 flex-grow w-72 w-19/20 bg-gray-bg hover:translate-x-2 hover:shadow-lg transition-all rounded-lg shadow-sm border-accent border-2 relative"
+                className="my-3 lg:mx-auto mx-3 lg:w-full px-3 py-4 flex-grow w-72  bg-gray-bg hover:translate-x-2 hover:shadow-lg transition-all rounded-lg shadow-sm border-accent border-2 relative"
               >
                 <div className="">
                   <div className="text-xs bg-accent absolute inline-flex top-0 right-0 h-7 lg:w-1/4 min-w-max w-1/3 text-center justify-center rounded-tr-md font-bold text-white items-center ">

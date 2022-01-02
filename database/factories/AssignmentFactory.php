@@ -25,6 +25,7 @@ class AssignmentFactory extends Factory
       'title' => $this->faker->name(),
       'description' => $this->faker->text(200),
       'budget' => ($this->faker->numberBetween(50000, 200000)),
+      'active' => true
     ];
   }
 }

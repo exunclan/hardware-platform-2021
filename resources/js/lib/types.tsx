@@ -39,6 +39,7 @@ export interface IAssignment {
   title: string;
   description: string;
   budget: string;
+  active: boolean;
 
   created_at: string;
   updated_at: string;

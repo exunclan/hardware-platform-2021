@@ -83,17 +83,13 @@ select:focus {
   @apply m-3 px-8 pt-10 pb-8 flex-grow w-80 bg-white rounded-lg shadow-md box-border;
 }
 .checkbox {
-  /* appearance: none; */
   transform: translateY(-0.075em);
-  /* border-width: 1px; */
   display: grid;
   place-content: center;
   @apply appearance-none border-2 border-accent-light rounded-sm cursor-pointer;
 }
 .checkbox::before {
   content: "";
-  /* width: 0.65em; */
-  /* height: 0.65em; */
   width: 0.65rem;
   height: 0.65rem;
   transform: scale(0);
@@ -133,8 +129,8 @@ select:focus {
   top: 0;
   bottom: 0;
 }
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .w-19\/20 {
     width: 95%;
   }
-}
+} */

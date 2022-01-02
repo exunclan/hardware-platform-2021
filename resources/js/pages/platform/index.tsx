@@ -1,7 +1,7 @@
-import { Link, useForm } from "@inertiajs/inertia-react";
+import { Link, useForm, usePage } from "@inertiajs/inertia-react";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import { IPart, IPartPrice, IUser } from "../../lib/types";
+import { IAssignment, IPart, IPartPrice, IUser } from "../../lib/types";
 import useTitle from "../../lib/use-title";
 import PartsCart from "./PartsCart";
 import PartsList from "./PartsList";
@@ -13,6 +13,7 @@ interface IPlatformProps {
   user: IUser;
   grouped_parts: [];
   part_price: IPartPrice[];
+  assignment: IAssignment;
 }
 
 const Page: React.FC<IPlatformProps> = ({
@@ -20,7 +21,9 @@ const Page: React.FC<IPlatformProps> = ({
   user,
   grouped_parts,
   part_price,
+  assignment,
 }: IPlatformProps) => {
+  const { flash }: any = usePage().props;
   useTitle("Platform | Exun Hardware 2021");
   const [parts, setParts] = useState(httpParts);
 
@@ -38,15 +41,28 @@ const Page: React.FC<IPlatformProps> = ({
   }, []);
 
   const [checkedPartId, setPartId] = useState(0);
+  const [listView, setListView] = useState(false);
+
+  let containerClassList =
+    "flex items-start justify-center lg:flex-row flex-col h-full w-full";
+  if (listView) {
+    containerClassList =
+      "flex items-start justify-center lg:flex-row flex-col h-full w-full flex-wrap ";
+  } else {
+    containerClassList =
+      "flex items-start justify-center lg:flex-row flex-col h-full w-full";
+  }
 
   return (
     <Layout links={[]}>
-      <div className="flex items-start justify-center lg:flex-row flex-col h-full w-full">
+      <div className={`${containerClassList} `}>
         <PartsPriceHistory
           parts={parts}
           checkedPartId={checkedPartId}
           setCheckedPartId={setPartId}
           part_price={part_price}
+          listView={listView}
+          setListView={setListView}
         />
         {user.cart_parts ? (
           <>
@@ -55,6 +71,10 @@ const Page: React.FC<IPlatformProps> = ({
               cart={grouped_parts}
               checkedPartId={checkedPartId}
               setCheckedPartId={setPartId}
+              flash={flash}
+              assignment={assignment}
+              listView={listView}
+              setListView={setListView}
             />
             <PartsCart cart={grouped_parts} parts={parts} />
           </>
@@ -62,8 +82,12 @@ const Page: React.FC<IPlatformProps> = ({
           <>
             <PartsList
               parts={parts}
-              setCheckedPartId={setPartId}
               checkedPartId={checkedPartId}
+              setCheckedPartId={setPartId}
+              flash={flash}
+              assignment={assignment}
+              listView={listView}
+              setListView={setListView}
             />
             <PartsCart parts={parts} />
           </>

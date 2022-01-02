@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import { IPart, IPartPrice } from "../../lib/types";
 
@@ -7,6 +7,8 @@ interface IPageProps {
   checkedPartId: number;
   setCheckedPartId: React.Dispatch<React.SetStateAction<number>>;
   part_price: IPartPrice[];
+  listView: boolean;
+  setListView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PartsPriceHistory: React.FC<IPageProps> = ({
@@ -14,13 +16,24 @@ const PartsPriceHistory: React.FC<IPageProps> = ({
   checkedPartId,
   setCheckedPartId,
   part_price,
+  listView,
+  setListView,
 }: IPageProps) => {
   const partById = (id: number) => parts.find((p) => p.id === id);
   const partPriceByPartId = (id: number) =>
     part_price.find((pp) => pp.part_id == id);
 
+  let containerClassList =
+    "w-full lg:max-w-xs max-w-4xl lg:mr-4 mx-auto lg:my-0 z-10 mt-4 lg:min-h-screen px-5 lg:order-1 order-10  ";
+  if (listView) {
+    containerClassList = "w-full max-w-4xl lg:my-8 z-10 mt-4  order-10 ";
+  } else {
+    containerClassList =
+      "w-full lg:max-w-xs max-w-4xl lg:mr-4 mx-auto lg:my-0 z-10 mt-4 lg:min-h-screen px-5 lg:order-1 order-10  ";
+  }
+
   return (
-    <div className="w-full lg:max-w-xs max-w-4xl lg:mr-4 mx-auto lg:my-0 z-10 mt-4 lg:min-h-screen px-5 lg:order-1 order-10  ">
+    <div className={containerClassList}>
       <div className="w-full p-6 bg-white rounded-lg shadow-sm flex items-center">
         <div>
           <div className="text-sm uppercase font-bold text-type-light">
@@ -43,7 +56,7 @@ const PartsPriceHistory: React.FC<IPageProps> = ({
                   <div key={i}>
                     <Popup
                       trigger={
-                        <div className="my-3 lg:w-full mx-auto px-3 py-4 flex-grow w-72 w-19/20 bg-gray-bg hover:translate-x-2 hover:shadow-lg transition-all rounded-lg shadow-sm border-accent border-2 relative">
+                        <div className="my-3 lg:w-full mx-auto px-3 py-4 flex-grow w-72  bg-gray-bg hover:translate-x-2 hover:shadow-lg transition-all rounded-lg shadow-sm border-accent border-2 relative">
                           <div>
                             <div className="pb-3">
                               <div className="text-sm leading-relaxed w-9/12 font-extrabold text-accent-dark mb-1">

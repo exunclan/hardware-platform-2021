@@ -17,7 +17,7 @@ const Table: React.FC<ITableProps> = ({ records }: ITableProps) => {
   const headers = Object.keys(records[0]);
 
   return (
-    <table className="w-full border-collapse border-1 border-gray-300 divide-y divide-gray-100">
+    <table className="w-full border-collapse border-1 border-gray-300 divide-y divide-gray-100 md:table-fixed md:break-words sm:overflow-scroll">
       <thead>
         <tr className="bg-gray-200 rounded-t-lg text-left uppercase text-xs">
           {headers.map((header, i) => (

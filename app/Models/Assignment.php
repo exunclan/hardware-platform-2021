@@ -11,7 +11,8 @@ class Assignment extends Model
   protected $fillable = [
     'title',
     'description',
-    'budget'
+    'budget',
+    'active',
   ];
   use HasFactory;
 }

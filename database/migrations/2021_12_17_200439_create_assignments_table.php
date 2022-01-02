@@ -19,6 +19,7 @@ class CreateAssignmentsTable extends Migration
       $table->string('title');
       $table->string('description');
       $table->string('budget');
+      $table->boolean('active');
 
       $table->timestamps();
     });
