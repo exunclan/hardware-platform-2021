@@ -14,6 +14,7 @@ const UserInfo: React.FC<IUserInfo> = ({ user }: IUserInfo) => {
   const show = {
     name: user.name,
     email: user.email,
+    balance: `$ ${user.balance}`,
   };
 
   return (
@@ -72,8 +73,8 @@ const UserInfo: React.FC<IUserInfo> = ({ user }: IUserInfo) => {
           ) : (
             <div className="mt-4">
               <div className="flex-1 flex items-center justify-end">
-                <Link className="button w-full mx-2" href="/invite">
-                  Rules ???
+                <Link className="button w-full mx-2" href="/rules">
+                  Rules
                 </Link>
               </div>
             </div>

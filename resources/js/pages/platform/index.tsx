@@ -1,7 +1,13 @@
 import { Link, useForm, usePage } from "@inertiajs/inertia-react";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import { IAssignment, IPart, IPartPrice, IUser } from "../../lib/types";
+import {
+  IAssignment,
+  IPart,
+  IPartPrice,
+  IUser,
+  IUserPart,
+} from "../../lib/types";
 import useTitle from "../../lib/use-title";
 import PartsCart from "./PartsCart";
 import PartsList from "./PartsList";
@@ -12,6 +18,7 @@ interface IPlatformProps {
   parts: IPart[];
   user: IUser;
   grouped_parts: [];
+  cart: IUserPart[];
   part_price: IPartPrice[];
   assignment: IAssignment;
 }
@@ -20,10 +27,10 @@ const Page: React.FC<IPlatformProps> = ({
   parts: httpParts,
   user,
   grouped_parts,
+  cart,
   part_price,
   assignment,
 }: IPlatformProps) => {
-  const { flash }: any = usePage().props;
   useTitle("Platform | Exun Hardware 2021");
   const [parts, setParts] = useState(httpParts);
 
@@ -45,13 +52,14 @@ const Page: React.FC<IPlatformProps> = ({
 
   let containerClassList =
     "flex items-start justify-center lg:flex-row flex-col h-full w-full";
-  if (listView) {
-    containerClassList =
-      "flex items-start justify-center lg:flex-row flex-col h-full w-full flex-wrap ";
-  } else {
-    containerClassList =
-      "flex items-start justify-center lg:flex-row flex-col h-full w-full";
-  }
+  // to send price history component at bottom
+  // if (listView) {
+  //   containerClassList =
+  //     "flex items-start justify-center lg:flex-row flex-col h-full w-full flex-wrap ";
+  // } else {
+  //   containerClassList =
+  //     "flex items-start justify-center lg:flex-row flex-col h-full w-full";
+  // }
 
   return (
     <Layout links={[]}>
@@ -64,27 +72,31 @@ const Page: React.FC<IPlatformProps> = ({
           listView={listView}
           setListView={setListView}
         />
-        {user.cart_parts ? (
+        {user.cart_parts && user.cart_parts?.length > 0 ? (
           <>
             <PartsList
+              user={user}
               parts={parts}
               cart={grouped_parts}
               checkedPartId={checkedPartId}
               setCheckedPartId={setPartId}
-              flash={flash}
               assignment={assignment}
               listView={listView}
               setListView={setListView}
             />
-            <PartsCart cart={grouped_parts} parts={parts} />
+            <PartsCart
+              grouped_parts={grouped_parts}
+              cart={cart}
+              parts={parts}
+            />
           </>
         ) : (
           <>
             <PartsList
+              user={user}
               parts={parts}
               checkedPartId={checkedPartId}
               setCheckedPartId={setPartId}
-              flash={flash}
               assignment={assignment}
               listView={listView}
               setListView={setListView}

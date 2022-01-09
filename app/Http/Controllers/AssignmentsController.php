@@ -16,7 +16,7 @@ class AssignmentsController extends Controller
   public function index()
   {
     // ddd(Assignment::all());
-    return Inertia::render('assignments/index', ["assingments" => Assignment::all()]);
+    return Inertia::render('assignments/index', ["assignment" => Assignment::where('active', true)->first()]);
   }
 
   /**

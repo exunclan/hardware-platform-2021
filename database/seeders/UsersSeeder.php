@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Assignment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -24,6 +25,7 @@ class UsersSeeder extends Seeder
       'email' => 'admin@dpsrkp.net',
       'password' => Hash::make('adminadmin'),
       'admin' => true,
+      'balance' => 2000,
       'email_verified_at' => now(),
       'remember_token' => Str::random(10),
     ]))->save();
@@ -33,6 +35,7 @@ class UsersSeeder extends Seeder
       'email' => 'sakshamraheja11@gmail.com',
       'password' => Hash::make('sakshamsaksham'),
       'admin' => false,
+      'balance' => 2000,
       'email_verified_at' => now(),
       'remember_token' => Str::random(10),
 

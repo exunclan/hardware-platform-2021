@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Approved;
 use App\Models\Part;
 use App\Models\User;
 use Illuminate\Http\Request;

@@ -18,7 +18,8 @@ class PartFactory extends Factory
     return [
       'name' => $this->faker->name(),
       'company' => $this->faker->name(),
-      'price' => $this->faker->numberBetween(1000, 40000),
+      // 'price' => $this->faker->numberBetween(1000, 40000),
+      'price' => "100",
       'type' => $this->faker->name(),
     ];
   }

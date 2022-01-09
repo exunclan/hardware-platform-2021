@@ -25,12 +25,14 @@ const PartsPriceHistory: React.FC<IPageProps> = ({
 
   let containerClassList =
     "w-full lg:max-w-xs max-w-4xl lg:mr-4 mx-auto lg:my-0 z-10 mt-4 lg:min-h-screen px-5 lg:order-1 order-10  ";
-  if (listView) {
-    containerClassList = "w-full max-w-4xl lg:my-8 z-10 mt-4  order-10 ";
-  } else {
-    containerClassList =
-      "w-full lg:max-w-xs max-w-4xl lg:mr-4 mx-auto lg:my-0 z-10 mt-4 lg:min-h-screen px-5 lg:order-1 order-10  ";
-  }
+
+  // to send price history component at bottom
+  // if (listView) {
+  //   containerClassList = "w-full max-w-4xl lg:my-8 z-10 mt-4  order-10 ";
+  // } else {
+  //   containerClassList =
+  //     "w-full lg:max-w-xs max-w-4xl lg:mr-4 mx-auto lg:my-0 z-10 mt-4 lg:min-h-screen px-5 lg:order-1 order-10  ";
+  // }
 
   return (
     <div className={containerClassList}>
@@ -56,7 +58,7 @@ const PartsPriceHistory: React.FC<IPageProps> = ({
                   <div key={i}>
                     <Popup
                       trigger={
-                        <div className="my-3 lg:w-full mx-auto px-3 py-4 flex-grow w-72  bg-gray-bg hover:translate-x-2 hover:shadow-lg transition-all rounded-lg shadow-sm border-accent border-2 relative">
+                        <div className="my-3 lg:w-full mx-auto px-3 py-4 flex-grow w-72  bg-gray-bg hover:translate-x-2 hover:shadow-lg transition-all rounded-lg shadow-sm border-accent border-2 relative cursor-pointer">
                           <div>
                             <div className="pb-3">
                               <div className="text-sm leading-relaxed w-9/12 font-extrabold text-accent-dark mb-1">

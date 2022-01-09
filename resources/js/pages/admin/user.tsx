@@ -23,6 +23,7 @@ const User: React.FC<IUserProps> = ({
     id: user.id,
     name: user.name,
     email: user.email,
+    balance: user.balance,
     email_verified_at: user.email_verified_at,
     created_at: user.created_at,
     updated_at: user.updated_at,
@@ -117,21 +118,6 @@ const User: React.FC<IUserProps> = ({
               </div>
             </form>
             <div className="flex-1 flex items-center justify-start">
-              {/* {!school.approved && (
-                <form
-                  className="mr-5 w-1/2"
-                  onSubmit={(e: React.SyntheticEvent) => {
-                    e.preventDefault();
-                    post(`/admin/schools/${school.id}/approve`, {
-                      preserveScroll: true,
-                    });
-                  }}
-                >
-                  <button type="submit" className="button w-full my-2">
-                    Approve
-                  </button>
-                </form>
-              )} */}
               <form
                 className="w-1/2"
                 onSubmit={(e: React.SyntheticEvent) => {

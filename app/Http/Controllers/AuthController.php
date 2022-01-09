@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assignment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,7 @@ class AuthController extends Controller
 
     $u = new User($r);
     $u->hashPassword();
+    $u->balance = Assignment::where('active', true)->first()->budget;
     $u->save();
 
     Auth::login($u, true);

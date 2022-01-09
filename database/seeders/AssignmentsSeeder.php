@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Assignment;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AssignmentsSeeder extends Seeder
 {
@@ -14,6 +16,6 @@ class AssignmentsSeeder extends Seeder
    */
   public function run()
   {
-    Assignment::factory(5)->create();
+    Assignment::factory(1)->create();
   }
 }

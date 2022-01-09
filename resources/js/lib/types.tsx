@@ -7,6 +7,7 @@ export interface IUser {
   name: string;
   email_verified_at?: string;
   admin: boolean;
+  balance: string;
 
   cart_parts?: IUserPart[];
   cart_parts_count?: number;

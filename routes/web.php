@@ -102,7 +102,7 @@ Route::prefix('/platform')
 
     // UserPart Operations
     Route::prefix('/')->name("userpart.")->group(function () {
-      Route::post('/buy/{id}', [UserPartController::class, 'buy'])->name('buy');
+      Route::post('/buy', [UserPartController::class, 'buy'])->name('buy');
       Route::post('/sell/{id}', [UserPartController::class, 'sell'])->name('sell');
     });
   });
@@ -115,7 +115,10 @@ Route::prefix('/assignments')
     Route::get('/', [AssignmentsController::class, 'index'])->name('index');
   });
 
-
+// Rules
+Route::get('/rules', function () {
+  return Inertia::render('rules');
+});
 
 
 if (App::environment('local')) {

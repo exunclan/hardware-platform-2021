@@ -21,13 +21,15 @@ class PartsController extends Controller
   public function index()
   {
     $user = User::with(['cart_parts', 'cart_parts.part'])->withCount('cart_parts')->where('id', Auth::id())->first();
-    $grouped_parts = $user->cart_parts->groupBy('part_id');
+    $grouped_parts = $user->cart_parts->groupBy('part_id')->all();
+    $cart = $user->cart_parts;
     $part_price = PartPrice::orderBy('created_at', 'DESC')->get();
 
     return Inertia::render('platform/index', [
       "parts" => Part::all(),
       "user" => $user,
-      "grouped_parts" => $grouped_parts->all(),
+      "grouped_parts" => $grouped_parts,
+      "cart" => $cart,
       "part_price" => $part_price,
       "assignment" => Assignment::where('active', true)->first()
     ]);
