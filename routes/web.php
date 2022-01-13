@@ -78,7 +78,7 @@ Route::prefix('/admin')
   ->group(function () {
     Route::get('/', function () {
       $stats = [
-        "users" => User::all()->count(),
+        "users" => User::where('admin', false)->count(),
         "parts" => Part::all()->count(),
         "transactions" => UserPart::all()->count() + UserPart::whereNotNull('sold_at')->count(),
         "assignments" => Assignment::all()->count(),
