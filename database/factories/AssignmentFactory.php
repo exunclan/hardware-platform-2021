@@ -21,11 +21,11 @@ class AssignmentFactory extends Factory
    */
   public function definition()
   {
-    return [
-      'title' => $this->faker->name(),
-      'description' => $this->faker->text(200),
-      'budget' => "1000",
-      'active' => true
-    ];
+    // return [
+    //   'title' => $this->faker->name(),
+    //   'description' => $this->faker->text(200),
+    //   'budget' => "1000",
+    //   'active' => true
+    // ];
   }
 }

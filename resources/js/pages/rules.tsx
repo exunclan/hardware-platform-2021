@@ -39,10 +39,53 @@ const Page: React.FC<IPageProps> = ({}: IPageProps) => {
               <div className="text-4xl font-bold text-accent-light">Rules</div>
             </div>
           </div>
-          <div className="flex-1 p-6 m-2 bg-white rounded-lg shadow-sm flex items-center ">
-            {/* {assignment.description} */} Lorem ipsum dolor, sit amet
-            consectetur adipisicing elit. Ipsum tempore, nulla temporibus vel
-            esse dicta! Totam optio dignissimos rerum cum.
+          <div className="flex-1 p-6 m-2 bg-white rounded-lg shadow-sm flex flex-col ">
+            <div className="my-3">
+              The parts for the build should be obtained on this platform and
+              your budget should be no more than 2022 nuxE.
+            </div>
+            <div className="my-3">
+              <span className="italic font-bold">Note: </span>
+              No peripherals, cases, or cooling configurations should be
+              included in the configuration.
+            </div>
+            <div className="my-3">
+              <ol className="!list-decimal ml-5">
+                <li className="pb-1 font">
+                  The criteria for judging your build will be based on the parts
+                  you have chosen for the given workload from the provided list.
+                </li>
+                <li className="pb-1 font">
+                  Tampering or hacking the site will lead to an instant
+                  disqualification along with a report to your rep /
+                  teacher-in-charge.
+                </li>
+                <li className="pb-1 font">
+                  Sabotaging or harassing other teams will lead to
+                  disqualification.
+                </li>
+                <li className="pb-1 font">
+                  If your parts are found to be incompatible; you will be
+                  disqualified.
+                </li>
+                <li className="pb-1 font">
+                  The limit for components are as follows
+                  <ol className="!list-disc ml-10">
+                    <li className="pt-1">Motherboard: 1</li>
+                    <li className="pt-1">CPU: 1</li>
+                    <li className="pt-1">
+                      GPU: Depends on slots available on chosen Motherboard
+                    </li>
+                    <li className="pt-1">
+                      RAM: Depends on slots available on chosen Motherboard
+                    </li>
+                    <li className="pt-1">
+                      Storage: Depends on slots available on chosen Motherboard
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </div>
           </div>
         </div>
       </div>

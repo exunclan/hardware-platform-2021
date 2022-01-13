@@ -70,21 +70,26 @@ const Page: React.FC<IAssignmentsPageProps> = ({
               </div>
             </div>
           </div>
-          <div className="flex-1 p-6 m-2 bg-white rounded-lg shadow-sm flex items-center ">
-            {assignment.description}
+          <div className="flex-1 p-6 m-2 bg-white rounded-lg shadow-sm flex flex-col">
+            <div className="my-3">
+              Welcome to the Hardware event for Exun 2021-22. You are the Senior
+              Developer of NuxE Corp.; a start-up that focuses on blockchain, ML
+              and Data Science. Your company has provided you with 2022 nuxE to
+              build your upgraded personalized setup to increase work
+              efficiency. On this platform, you are required to build your pc
+              with that assigned budget. Be careful, though; as the price of the
+              parts on the platform changes dynamically due to the silicon and
+              supply shortage taking place around the world.
+            </div>
+            <div className="my-3">
+              Your workload for this task is cryptocurrency mining, hashes,
+              encryption along with virtualization and running the public
+              blockchain node for your company.
+            </div>
+            <div className="italic font-bold">~2022 nuxE</div>
           </div>
         </div>
       </div>
-      {/* 
-          <pre
-            style={{
-              whiteSpace: "pre-wrap",
-              wordWrap: "break-word",
-            }}
-          >
-            {JSON.stringify(assingments, null, 2)}
-          </pre>
-        */}
     </Layout>
   );
 };
