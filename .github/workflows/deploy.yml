@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: CD and Pull from Github
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            sudo su - larasail
+            cd /var/www/hardware
+            git pull origin master
+            composer install
+            npm i
+            npm run prod
+            sudo service nginx restart
+          host: ${{ secrets.HOST }}
+          user: ubuntu
+          key: ${{ secrets.PRIVATE_KEY }}
