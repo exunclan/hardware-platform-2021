@@ -45,45 +45,13 @@ const Index: React.FC = () => {
               <div className="mt-4 bg-white w-full max-w-screen-md p-5 rounded-lg items-center justify-center">
                 <div className="flex-1 flex items-center justify-end my-2">
                   <Link className="button w-full flex-1 mx-2" href="/admin">
-                    Admin
+                    Admin Platform
                   </Link>
                 </div>
               </div>
             </Admin>
           </div>
         </Authenticated>
-
-        {/* <Authenticated>
-          <div className="w-full max-w-screen-md p-5 rounded-lg">
-            {user && <UserInfo user={user} edit={false} />}
-          </div>
-          <div className="bg-white w-full max-w-md p-5 rounded-lg">
-            <pre
-              style={{
-                whiteSpace: "pre-wrap",
-                wordWrap: "break-word",
-              }}
-            >
-              {JSON.stringify(user, null, 2)}
-            </pre>
-            <div className="mt-4">
-              <Admin>
-                <Link className="button w-full mb-4" href="/admin">
-                  Admin
-                </Link>
-              </Admin>
-              <Link className="button w-full my-2" href="/platform">
-                Start
-              </Link>
-              <Link className="button w-full my-2" href="/assignments">
-                Assignments
-              </Link>
-              <Link className="button w-full my-2" href="/auth/logout">
-                Logout
-              </Link>
-            </div>
-          </div>
-        </Authenticated> */}
       </div>
     </Layout>
   );
