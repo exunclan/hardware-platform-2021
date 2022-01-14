@@ -18,7 +18,7 @@ class Part extends Model
 
   public function handleBuy($event)
   {
-    $event->part->price = round($event->part->price + (5 / 100 * $event->part->price), 1);
+    $event->part->price = round($event->part->price + (7 / 100 * $event->part->price), 1);
     $event->part->save();
     broadcast(new PriceChanged($event->part));
     // PartPrice code 
@@ -28,7 +28,7 @@ class Part extends Model
 
   public function handleSell($event)
   {
-    $event->part->price = round($event->part->price - (10 / 100 * $event->part->price), 1);
+    $event->part->price = round($event->part->price - (2.5 / 100 * $event->part->price), 1);
     $event->part->save();
     broadcast(new PriceChanged($event->part));
     // PartPrice code 

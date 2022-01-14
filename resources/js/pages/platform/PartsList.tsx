@@ -292,7 +292,7 @@ const PartsList: React.FC<IPageProps> = ({
                               Sell at
                               {` $${(
                                 Number(price) -
-                                (10 / 100) * Number(price)
+                                (2.5 / 100) * Number(price)
                               ).toFixed(1)}`}{" "}
                             </button>
                           ) : (
@@ -419,7 +419,7 @@ const PartsList: React.FC<IPageProps> = ({
                                 Sell at
                                 {` $${(
                                   Number(part.price) -
-                                  (10 / 100) * Number(part.price)
+                                  (2.5 / 100) * Number(part.price)
                                 ).toFixed(1)}`}
                               </button>
                             ) : (
