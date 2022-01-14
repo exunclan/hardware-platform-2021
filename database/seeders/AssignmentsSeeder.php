@@ -24,7 +24,7 @@ Your workload for this task is cryptocurrency mining, hashes, encryption along w
 
 2022 nuxE
 ",
-      'budget' => "2010",
+      'budget' => "2022",
       'active' => true,
     ]))->save();
   }
